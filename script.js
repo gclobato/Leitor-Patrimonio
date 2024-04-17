@@ -79,3 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aqui você pode implementar a lógica para salvar ou exportar os dados como desejar
     }
 });
+
+
+console.log("Video element:", video);
