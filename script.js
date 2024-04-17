@@ -23,6 +23,23 @@ Quagga.init({
 
 Quagga.onDetected(function(result) {
     var code = result.codeResult.code;
-    alert("Número detectado: " + code);
-    // Você pode fazer o que quiser com o número detectado aqui, como enviar para um servidor ou exibir na tela.
+    if (validateNumber(code)) {
+        alert("Número detectado: " + code);
+        addToTable(code);
+    } else {
+        alert("Número inválido.");
+    }
 });
+
+function validateNumber(number) {
+    // Verificar se o número corresponde ao padrão 000.000-0
+    var regex = /^\d{3}\.\d{3}-\d$/;
+    return regex.test(number);
+}
+
+function addToTable(number) {
+    var table = document.getElementById("numbersTable").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.rows.length);
+    var cell = newRow.insertCell(0);
+    cell.innerHTML = number;
+}
