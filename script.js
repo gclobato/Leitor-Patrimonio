@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         inputStream: {
             name: "Live",
             type: "LiveStream",
-            target: document.querySelector('#video'), // Use a área de vídeo como alvo
+            target: document.querySelector('#video'),
             constraints: {
                 width: 640,
                 height: 480,
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, function(err) {
         if (err) {
             console.log(err);
-            return
+            return;
         }
         console.log("Initialization finished. Ready to start");
         Quagga.start();
@@ -25,23 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
         if (validateNumber(code)) {
-            alert("Número detectado: " + code);
             addToTable(code);
-        } else {
-            alert("Número inválido.");
         }
     });
 
-    function validateNumber(number) {
-        // Verificar se o número corresponde ao padrão 000.000-0
-        var regex = /^\d{3}\.\d{3}-\d$/;
-        return regex.test(number);
-    }
+    
 
     function addToTable(number) {
         var table = document.getElementById("numbersTable").getElementsByTagName('tbody')[0];
         var newRow = table.insertRow(table.rows.length);
         var cell = newRow.insertCell(0);
-        cell.innerHTML = number;
+        cell.textContent = number;
     }
 });
