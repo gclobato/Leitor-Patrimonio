@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    
 
     function addToTable(number) {
         var table = document.getElementById("numbersTable").getElementsByTagName('tbody')[0];
