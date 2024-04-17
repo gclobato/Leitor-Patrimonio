@@ -1,20 +1,27 @@
+#scanner-container {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+}
+
 #scanner {
     position: relative;
     width: 100%;
-    height: 50vh; /* Reduzido para fazer espaço para a tabela */
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #video {
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: cover;
 }
 
 #canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    display: none;
 }
 
 #overlay {
@@ -23,7 +30,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
 }
 
 #mask {
@@ -38,12 +44,37 @@
     pointer-events: none;
 }
 
-#results {
+#crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#scanButton {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#table-container {
     margin-top: 20px;
 }
 
 #numbersTable {
-    margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -56,4 +87,15 @@
 
 #numbersTable th {
     background-color: #f2f2f2;
+}
+
+#exportButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
