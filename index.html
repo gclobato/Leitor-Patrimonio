@@ -39,36 +39,39 @@
     <div id="camera"></div>
     <div id="resultado">Nenhum código de barras detectado.</div>
 
-    <script src="quagga.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
 
     <script>
-        try {
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector('#camera')
-                },
-                decoder: {
-                    readers: ["code_128_reader"]
-                }
-            }, function (err) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log("Initialization finished. Ready to start");
-                Quagga.start();
-            });
+        // Configuração do Quagga.js
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector('#camera')
+            },
+            decoder: {
+                readers: ["code_128_reader"] // Aqui você pode adicionar outros tipos de leitores, se necessário
+            }
+        }, function (err) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+        });
 
-            Quagga.onDetected(function (data) {
-                var code = data.codeResult.code;
-                document.querySelector('#resultado').innerText = "Código de barras detectado: " + code;
-            });
-        } catch (error) {
-            console.error("An error occurred:", error);
-            // Aqui você pode lidar com o erro de forma apropriada, como exibir uma mensagem para o usuário ou realizar alguma ação de recuperação.
-        }
+        // Captura de erros do Quagga.js
+        Quagga.onProcessed(function(result) {
+            if (result && result.exception) {
+                console.error(result.exception);
+            }
+        });
+
+        Quagga.onDetected(function (data) {
+            var code = data.codeResult.code;
+            document.querySelector('#resultado').innerText = "Código de barras detectado: " + code;
+        });
     </script>
 
 </body>
