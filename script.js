@@ -4,8 +4,8 @@ Quagga.init({
         type: "LiveStream",
         target: document.querySelector('#reader'),
         constraints: {
-            width: 414,
-            height: 896,
+            width: 640,
+            height: 480,
             facingMode: "environment"
         },
     },
