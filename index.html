@@ -5,23 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Ler Barcode </title>
+    <title>Ler Barcode</title>
 </head>
 
 <body>
 
     <div id="resultado"></div>
     <div id="camera"></div>
+    <div id="tabela"></div>
+    <button id="exportar">Exportar como texto</button>
 
     <script src="quagga.min.js"></script>
 
     <script>
+        // Array para armazenar os números escaneados
+        var numerosEscaneados = [];
 
         Quagga.init({
             inputStream: {
                 name: "Live",
                 type: "LiveStream",
-                target: document.querySelector('#camera')    // Or '#yourElement' (optional)
+                target: document.querySelector('#camera')    // Ou '#camera' (opcional)
             },
             decoder: {
                 readers: ["code_128_reader"]
@@ -31,13 +35,42 @@
                 console.log(err);
                 return
             }
-            console.log("Initialization finished. Ready to start");
+            console.log("Inicialização concluída. Pronto para iniciar");
             Quagga.start();
         });
 
         Quagga.onDetected(function (data) {
-            console.log(data.codeResult.code);
-            document.querySelector('#resultado').innerText = data.codeResult.code;
+            var numero = data.codeResult.code;
+            console.log(numero);
+            document.querySelector('#resultado').innerText = numero;
+            numerosEscaneados.push(numero); // Adiciona o número ao array
+            atualizarTabela(); // Atualiza a tabela com os números escaneados
+        });
+
+        // Função para atualizar a tabela com os números escaneados
+        function atualizarTabela() {
+            var tabela = document.getElementById('tabela');
+            tabela.innerHTML = ''; // Limpa a tabela antes de atualizar
+
+            var header = tabela.insertRow(0);
+            var cell = header.insertCell(0);
+            cell.textContent = 'Números Escaneados';
+
+            for (var i = 0; i < numerosEscaneados.length; i++) {
+                var row = tabela.insertRow(i + 1);
+                var cell = row.insertCell(0);
+                cell.textContent = numerosEscaneados[i];
+            }
+        }
+
+        // Função para exportar a tabela como texto
+        document.getElementById('exportar').addEventListener('click', function () {
+            var texto = '';
+            for (var i = 0; i < numerosEscaneados.length; i++) {
+                texto += numerosEscaneados[i] + '\n';
+            }
+            console.log(texto);
+            // Aqui você pode implementar a lógica para exportar o texto como desejar
         });
 
     </script>
