@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+ddocument.addEventListener('DOMContentLoaded', function() {
     var video = document.getElementById('video');
     var canvas = document.getElementById('canvas');
     var scanButton = document.getElementById('scanButton');
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         console.log("Initialization finished. Ready to start");
+        Quagga.start();
     });
 
     // Evento de clique no botão de scanear
