@@ -7,30 +7,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="scanner-container">
-        <div id="scanner">
-            <video id="video" autoplay playsinline></video>
-            <canvas id="canvas"></canvas>
-            <div id="overlay">
-                <div id="mask"></div>
+    <div id="container">
+        <div id="scanner-container">
+            <div id="scanner">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas"></canvas>
+                <div id="overlay">
+                    <div id="mask"></div>
+                </div>
+                <div id="crosshair"></div>
+                <button id="scanButton">Scanear</button>
             </div>
-            <div id="crosshair"></div>
-            <button id="scanButton">Scanear</button>
         </div>
-        <div id="results"></div>
-    </div>
-    <div id="table-container">
-        <table id="numbersTable">
-            <thead>
-                <tr>
-                    <th>Número Detectado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Aqui serão inseridos os números detectados -->
-            </tbody>
-        </table>
-        <button id="exportButton">Exportar</button>
+        <div id="table-container">
+            <table id="numbersTable">
+                <thead>
+                    <tr>
+                        <th>Número Detectado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aqui serão inseridos os números detectados -->
+                </tbody>
+            </table>
+            <button id="exportButton">Exportar</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
     <script src="script.js"></script>
