@@ -21,6 +21,16 @@ Quagga.init({
     Quagga.start();
 });
 
+Quagga.onDetected(function(result) {
+    var code = result.codeResult.code;
+    if (validateNumber(code)) {
+        alert("Número detectado: " + code);
+        addToTable(code);
+    } else {
+        alert("Número inválido.");
+    }
+});
+
 function validateNumber(number) {
     // Verificar se o número corresponde ao padrão 000.000-0
     var regex = /^\d{3}\.\d{3}-\d$/;

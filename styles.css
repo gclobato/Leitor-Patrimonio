@@ -2,3 +2,23 @@
     width: 100%;
     height: 100vh;
 }
+
+#results {
+    margin-top: 20px;
+}
+
+#numbersTable {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#numbersTable th, #numbersTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#numbersTable th {
+    background-color: #f2f2f2;
+}
