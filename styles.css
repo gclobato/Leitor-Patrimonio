@@ -9,11 +9,10 @@ h1 {
     margin-top: 10px;
 }
 
-#reader {
+#video-container {
     position: relative;
     width: 100%;
-    height: calc(100vh - 100px); /* Ajuste para dar espaço para a tabela */
-    overflow: hidden;
+    height: 50vh; /* Definindo a altura do contêiner de vídeo */
 }
 
 #video {
