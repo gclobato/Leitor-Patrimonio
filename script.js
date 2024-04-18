@@ -1,3 +1,4 @@
+// Inicializar o Quagga
 Quagga.init({
     inputStream: {
         name: "Live",
@@ -15,14 +16,15 @@ Quagga.init({
 }, function(err) {
     if (err) {
         console.log(err);
-        return
+        return;
     }
     console.log("Initialization finished. Ready to start");
     Quagga.start();
 });
 
+// Evento de detecção de código de barras
 Quagga.onDetected(function(result) {
     var code = result.codeResult.code;
-    alert("Número detectado: " + code);
-    // Você pode fazer o que quiser com o número detectado aqui, como enviar para um servidor ou exibir na tela.
+    alert("Código de barras detectado: " + code);
+    // Aqui você pode atualizar a interface do usuário ou fazer outras ações com o código de barras detectado
 });
