@@ -1,39 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     var video = document.getElementById('video');
-    var scanButton = document.getElementById('scanButton');
     var exportButton = document.getElementById('exportButton');
     var tableBody = document.querySelector('#numbersTable tbody');
 
-    var isScanning = false;
-
-    // Evento de clique no botão de scanear
-    scanButton.addEventListener('click', function() {
-        if (!isScanning) {
-            isScanning = true;
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: video,
-                    constraints: {
-                        width: 640,
-                        height: 480,
-                        facingMode: "environment"
-                    }
-                },
-                decoder: {
-                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
-                }
-            }, function(err) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log("Initialization finished. Ready to start");
-                Quagga.start();
-            });
-            console.log("Scanning started");
+    // Inicialização do Quagga
+    Quagga.init({
+        inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: video,
+            constraints: {
+                width: 640,
+                height: 480,
+                facingMode: "environment"
+            }
+        },
+        decoder: {
+            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
         }
+    }, function(err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log("Initialization finished. Ready to start");
+        Quagga.start();
     });
 
     // Evento de detecção de números
