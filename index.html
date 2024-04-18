@@ -9,12 +9,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
 
         #camera {
             width: 100%;
-            height: auto;
-            max-width: 100%;
+            max-width: 400px;
             border: 2px solid #ccc;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -26,18 +31,13 @@
             text-align: center;
             margin-bottom: 10px;
         }
-
-        #info {
-            text-align: center;
-        }
     </style>
 </head>
 
 <body>
 
     <div id="camera"></div>
-    <div id="resultado"></div>
-    <div id="info">Nenhum código de barras detectado.</div>
+    <div id="resultado">Nenhum código de barras detectado.</div>
 
     <script src="quagga.min.js"></script>
 
@@ -63,7 +63,6 @@
         Quagga.onDetected(function (data) {
             var code = data.codeResult.code;
             document.querySelector('#resultado').innerText = "Código de barras detectado: " + code;
-            document.querySelector('#info').innerText = "Informações do código de barras aqui."; // Adicione as informações relevantes aqui
         });
     </script>
 
