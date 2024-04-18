@@ -1,4 +1,4 @@
-// Inicializar o Quagga
+// Inicializar o Quagga com restrições de aspectRatio
 Quagga.init({
     inputStream: {
         name: "Live",
@@ -7,7 +7,8 @@ Quagga.init({
         constraints: {
             width: 1920,
             height: 1080,
-            facingMode: "environment"
+            facingMode: "environment",
+            aspectRatio: 16/9 // Restrição de aspectRatio para ajustar o zoom
         },
     },
     decoder: {
