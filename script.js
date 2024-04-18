@@ -29,6 +29,13 @@ Quagga.onDetected(function(result) {
     // Aqui você pode atualizar a interface do usuário ou fazer outras ações com o código de barras detectado
 });
 
+// Criar a interface de guia para centralizar o código de barras
+var guide = document.getElementById("guide");
+var barcodeWidth = 250;
+var barcodeHeight = 100;
+guide.style.width = barcodeWidth + "px";
+guide.style.height = barcodeHeight + "px";
+
 // Criar a interface de leitura de código de barras
 var barcode = document.getElementById("barcode");
 for (var i = 0; i < 20; i++) {
