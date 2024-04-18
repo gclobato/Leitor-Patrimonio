@@ -31,11 +31,7 @@ Quagga.onDetected(function(result) {
     }
 });
 
-function validateNumber(number) {
-    // Verificar se o número corresponde ao padrão 000.000-0
-    var regex = /^\d{3}\.\d{3}-\d$/;
-    return regex.test(number);
-}
+
 
 function addToTable(number) {
     var table = document.getElementById("numbersTable").getElementsByTagName('tbody')[0];
