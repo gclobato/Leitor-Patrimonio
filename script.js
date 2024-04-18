@@ -5,8 +5,8 @@ Quagga.init({
         type: "LiveStream",
         target: document.querySelector('#reader'),
         constraints: {
-            width: 640,
-            height: 480,
+            width: 1920,
+            height: 1080,
             facingMode: "environment"
         },
     },
@@ -28,3 +28,12 @@ Quagga.onDetected(function(result) {
     alert("Código de barras detectado: " + code);
     // Aqui você pode atualizar a interface do usuário ou fazer outras ações com o código de barras detectado
 });
+
+// Criar a interface de leitura de código de barras
+var barcode = document.getElementById("barcode");
+for (var i = 0; i < 20; i++) {
+    var isBlack = i % 2 === 0;
+    var bar = document.createElement("div");
+    bar.className = isBlack ? "bar" : "white-bar";
+    barcode.appendChild(bar);
+}
