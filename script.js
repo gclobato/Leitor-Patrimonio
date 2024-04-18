@@ -2,10 +2,10 @@ Quagga.init({
     inputStream: {
         name: "Live",
         type: "LiveStream",
-        target: document.querySelector('#reader'),
+        target: document.querySelector('#video'),
         constraints: {
-            width: 640,
-            height: 480,
+            width: 1920, // Resolução de pelo menos 1080p
+            height: 1080,
             facingMode: "environment"
         },
     },
@@ -15,7 +15,7 @@ Quagga.init({
 }, function(err) {
     if (err) {
         console.log(err);
-        return
+        return;
     }
     console.log("Initialization finished. Ready to start");
     Quagga.start();
@@ -24,14 +24,16 @@ Quagga.init({
 Quagga.onDetected(function(result) {
     var code = result.codeResult.code;
     if (validateNumber(code)) {
-        alert("Número detectado: " + code);
         addToTable(code);
     } else {
-        alert("Número inválido.");
+        console.log("Número inválido:", code);
     }
 });
 
-
+function validateNumber(number) {
+    var regex = /^\d{3}\.\d{3}-\d$/;
+    return regex.test(number);
+}
 
 function addToTable(number) {
     var table = document.getElementById("numbersTable").getElementsByTagName('tbody')[0];
