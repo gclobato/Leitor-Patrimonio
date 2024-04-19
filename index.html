@@ -16,21 +16,25 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Alinha elementos na vertical */
 }
 #reader {
   width: 600px; /* Largura do leitor de QR */
+  margin-bottom: 20px; /* Espaçamento inferior para separar da tabela */
 }
 #result {
   text-align: center;
   font-size: 1.5rem; /* Tamanho da fonte para a mensagem de sucesso */
 }
 #scan-history {
-  margin-top: 20px; /* Espaçamento superior para a tabela de histórico */
   border-collapse: collapse; /* Bordas colapsadas na tabela */
+  font-size: 12px; /* Tamanho da fonte menor */
 }
 #scan-history th, #scan-history td {
   border: 1px solid black; /* Bordas pretas nas células da tabela */
   padding: 8px; /* Espaçamento interno nas células */
+  width: 150px; /* Largura da coluna aumentada */
+  text-align: center; /* Alinhamento do texto centralizado */
 }
 </style>
 <main>
@@ -39,7 +43,7 @@ main {
 <table id="scan-history"> <!-- Tabela para exibir o histórico de scans -->
   <thead>
     <tr>
-      <th>Scans anteriores</th> <!-- Cabeçalho da tabela -->
+      <th colspan="5">Scans anteriores</th> <!-- Cabeçalho da tabela ocupando 5 colunas -->
     </tr>
   </thead>
   <tbody>
