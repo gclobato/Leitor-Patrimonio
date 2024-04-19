@@ -63,14 +63,6 @@ const scanner = new Html5QrcodeScanner('reader', {
 // Variável para controlar se o scanner está ativo
 let scannerAtivo = false;
 
-// Evento ao clicar no leitor de QR
-document.getElementById('reader').addEventListener('click', () => {
-  if (!scannerAtivo) {
-    scanner.start(); // Inicia o scanner apenas se não estiver ativo
-    scannerAtivo = true;
-  }
-});
-
 scanner.render(sucesso, erro); // Renderiza o leitor de QR na div especificada
 
 function sucesso(resultado) {
