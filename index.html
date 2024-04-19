@@ -8,46 +8,72 @@
 </head>
 <body data-rsssl=1>
 
+<!-- Inclui a biblioteca html5-qrcode.min.js para escanear códigos QR -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
+/* Estilos CSS para centralizar o conteúdo na página */
 main {
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #reader {
-width: 600px;
+  width: 600px; /* Largura do leitor de QR */
 }
 #result {
-text-align: center;
-font-size: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem; /* Tamanho da fonte para a mensagem de sucesso */
+}
+#scan-history {
+  margin-top: 20px; /* Espaçamento superior para a tabela de histórico */
+  border-collapse: collapse; /* Bordas colapsadas na tabela */
+}
+#scan-history th, #scan-history td {
+  border: 1px solid black; /* Bordas pretas nas células da tabela */
+  padding: 8px; /* Espaçamento interno nas células */
 }
 </style>
 <main>
-<div id="reader"></div>
-<div id="result"></div>
+<div id="reader"></div> <!-- Div onde o leitor de QR será renderizado -->
+<div id="result"></div> <!-- Div onde a mensagem de sucesso será exibida -->
+<table id="scan-history"> <!-- Tabela para exibir o histórico de scans -->
+  <thead>
+    <tr>
+      <th>Scans anteriores</th> <!-- Cabeçalho da tabela -->
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 </main>
 <script>
 const scanner = new Html5QrcodeScanner('reader', {
-qrbox: {
-width: 250,
-height: 250,
-},
-fps: 20,
+  qrbox: {
+    width: 250, // Largura da caixa de escaneamento de QR
+    height: 250, // Altura da caixa de escaneamento de QR
+  },
+  fps: 20, // Taxa de quadros por segundo do vídeo da câmera
 });
-scanner.render(sucesso, erro);
+scanner.render(sucesso, erro); // Renderiza o leitor de QR na div especificada
+
 function sucesso(resultado) {
-document.getElementById('result').innerHTML = `
-<h2>Sucesso!</h2>
-<p><a href="${resultado}">${resultado}</a></p>
-`;
-scanner.clear();
-document.getElementById('reader').remove();
+  document.getElementById('result').innerHTML = `
+  <h2>Sucesso!</h2>
+  <p><a href="${resultado}">${resultado}</a></p>
+  `;
+  adicionarAoHistorico(resultado); // Adiciona o resultado ao histórico de scans
 }
+
+function adicionarAoHistorico(valor) {
+  const tabela = document.getElementById('scan-history').getElementsByTagName('tbody')[0]; // Obtém a referência da tabela
+  const novaLinha = tabela.insertRow(0); // Insere uma nova linha na tabela
+  const novaCelula = novaLinha.insertCell(0); // Insere uma nova célula na linha
+  novaCelula.textContent = valor; // Define o conteúdo da célula como o valor do scan
+}
+
 function erro(err) {
-console.error(err);
+  console.error(err); // Exibe erros no console do navegador
 }
 </script>
-  
 </body>
 </html>
