@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Documento</title>
 </head>
 <body data-rsssl=1>
 
@@ -36,16 +35,16 @@ height: 250,
 },
 fps: 20,
 });
-scanner.render(success, error);
-function success(result) {
+scanner.render(sucesso, erro);
+function sucesso(resultado) {
 document.getElementById('result').innerHTML = `
-<h2>Success!</h2>
-<p><a href="${result}">${result}</a></p>
+<h2>Sucesso!</h2>
+<p><a href="${resultado}">${resultado}</a></p>
 `;
 scanner.clear();
 document.getElementById('reader').remove();
 }
-function error(err) {
+function erro(err) {
 console.error(err);
 }
 </script>
