@@ -71,6 +71,7 @@
         Quagga.onDetected(function (data) {
             var code = data.codeResult.code;
             document.querySelector('#resultado').innerText = "Código de barras detectado: " + code;
+            console.log("Código de barras detectado: " + code); // Adicionando um log para imprimir o código no console
         });
     </script>
 
