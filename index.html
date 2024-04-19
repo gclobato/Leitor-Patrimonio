@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documento</title>
+<title>Lobato-Barcodes</title>
 </head>
 <body data-rsssl=1>
 
@@ -37,6 +37,11 @@ main {
   width: 150px; /* Largura da coluna aumentada */
   text-align: center; /* Alinhamento do texto centralizado */
 }
+footer {
+  margin-top: 20px; /* Espaçamento superior para separar do conteúdo principal */
+  text-align: center; /* Alinhamento centralizado do texto */
+  font-style: italic; /* Estilo itálico para o texto */
+}
 </style>
 <main>
 <div id="reader"></div> <!-- Div onde o leitor de QR será renderizado -->
@@ -51,6 +56,7 @@ main {
   </tbody>
 </table>
 </main>
+<footer>Copyright -  Guilherme Lobato</footer>
 <script>
 const scanner = new Html5QrcodeScanner('reader', {
   qrbox: {
