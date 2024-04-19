@@ -52,6 +52,8 @@ main {
 </table>
 </main>
 <script>
+let scannerIsActive = false; // Flag para indicar se o scanner está ativo
+
 const scanner = new Html5QrcodeScanner('reader', {
   qrbox: {
     width: 250, // Largura da caixa de escaneamento de QR
@@ -62,11 +64,17 @@ const scanner = new Html5QrcodeScanner('reader', {
 scanner.render(sucesso, erro); // Renderiza o leitor de QR na div especificada
 
 function sucesso(resultado) {
-  document.getElementById('result').innerHTML = `
-  <h2>Sucesso!</h2>
-  <p><a href="${resultado}">${resultado}</a></p>
-  `;
-  adicionarAoHistorico(resultado); // Adiciona o resultado ao histórico de scans
+  if (!scannerIsActive) {
+    scannerIsActive = true; // Define o scanner como ativo
+    document.getElementById('result').innerHTML = `
+    <h2>Sucesso!</h2>
+    <p><a href="${resultado}">${resultado}</a></p>
+    `;
+    adicionarAoHistorico(resultado); // Adiciona o resultado ao histórico de scans
+    setTimeout(() => {
+      scannerIsActive = false; // Define o scanner como inativo após um intervalo de tempo
+    }, 3000); // Tempo de espera em milissegundos (aqui, 3 segundos)
+  }
 }
 
 function adicionarAoHistorico(valor) {
