@@ -19,8 +19,8 @@ main {
   flex-direction: column; /* Alinha elementos na vertical */
 }
 #reader {
-  width: 300px; /* Largura do leitor de QR reduzida */
-  height: 225px; /* Altura do leitor de QR reduzida */
+  width: 400px; /* Largura do leitor de QR reduzida */
+  height: 300px; /* Altura do leitor de QR reduzida */
   margin-bottom: 20px; /* Espaçamento inferior para separar da tabela */
 }
 #result {
@@ -41,7 +41,6 @@ main {
 <main>
 <div id="reader"></div> <!-- Div onde o leitor de QR será renderizado -->
 <div id="result"></div> <!-- Div onde a mensagem de sucesso será exibida -->
-<button id="scanButton">Scanear</button> <!-- Botão para iniciar o escaneamento -->
 <table id="scan-history"> <!-- Tabela para exibir o histórico de scans -->
   <thead>
     <tr>
@@ -55,16 +54,11 @@ main {
 <script>
 const scanner = new Html5QrcodeScanner('reader', {
   qrbox: {
-    width: 200, // Largura da caixa de escaneamento de QR reduzida
-    height: 150, // Altura da caixa de escaneamento de QR reduzida
+    width: 250, // Largura da caixa de escaneamento de QR
+    height: 250, // Altura da caixa de escaneamento de QR
   },
   fps: 20, // Taxa de quadros por segundo do vídeo da câmera
 });
-
-document.getElementById('scanButton').addEventListener('click', () => {
-  scanner.start(); // Inicia o escaneamento quando o botão é clicado
-});
-
 scanner.render(sucesso, erro); // Renderiza o leitor de QR na div especificada
 
 function sucesso(resultado) {
