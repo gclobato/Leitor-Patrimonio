@@ -1,80 +1,54 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ler Barcode</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #camera {
-            width: 100%;
-            max-width: 400px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        #resultado {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 </head>
+<body data-rsssl=1>
 
-<body>
-
-    <div id="camera"></div>
-    <div id="resultado">Nenhum código de barras detectado.</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.js"></script>
-
-    <script>
-        // Configuração do Quagga.js
-        Quagga.init({
-            inputStream: {
-                name: "Live",
-                type: "LiveStream",
-                target: document.querySelector('#camera')
-            },
-            decoder: {
-                readers: ["code_128_reader"] // Aqui você pode adicionar outros tipos de leitores, se necessário
-            }
-        }, function (err) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-        });
-
-        // Captura de erros do Quagga.js
-        Quagga.onProcessed(function(result) {
-            if (result && result.exception) {
-                console.error(result.exception);
-            }
-        });
-
-        Quagga.onDetected(function (data) {
-            var code = data.codeResult.code;
-            document.querySelector('#resultado').innerText = "Código de barras detectado: " + code;
-            console.log("Código de barras detectado: " + code); // Adicionando um log para imprimir o código no console
-        });
-    </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+main {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#reader {
+width: 600px;
+}
+#result {
+text-align: center;
+font-size: 1.5rem;
+}
+</style>
+<main>
+<div id="reader"></div>
+<div id="result"></div>
+</main>
+<script>
+const scanner = new Html5QrcodeScanner('reader', {
+qrbox: {
+width: 250,
+height: 250,
+},
+fps: 20,
+});
+scanner.render(success, error);
+function success(result) {
+document.getElementById('result').innerHTML = `
+<h2>Success!</h2>
+<p><a href="${result}">${result}</a></p>
+`;
+scanner.clear();
+document.getElementById('reader').remove();
+}
+function error(err) {
+console.error(err);
+}
+</script>
+  
 </body>
-
 </html>
